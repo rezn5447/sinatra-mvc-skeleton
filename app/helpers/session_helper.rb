@@ -1,16 +1,16 @@
 helpers do
 
 
-  def current_user
-    @current_user ||= User.find(session[:id]) if session[:id]
+  def current_commander
+    @current_commander ||= Commander.find(session[:id]) if session[:id]
   end
 
   def logged_in?
-    current_user
+    current_commander
   end
 
-  def login(user)
-    session[:id] = @user.id
+  def login(commander)
+    session[:id] = @commander.id
   end
 
   def logout
