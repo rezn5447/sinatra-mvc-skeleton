@@ -4,15 +4,15 @@ end
 
 
 post '/sessions' do
-  @user = User.find_by_email(params[:email])
+  @commander = Commander.find_by_email(params[:email])
 
-  if @user && @user.password == params[:password]
-    # session[:id] = @user.id
-    login(@user)
-    redirect '/'
+  if @commander && @commander.password == params[:password]
+    session[:id] = @commander.id
+    login(@commander)
+    redirect '/commanders/#{@commander.id}'
 
   else
-    @errors = ["Username && Password not found."]
+    @errors = ["Name && Password not found."]
     erb :'sessions/new'
   end
 end
@@ -21,7 +21,7 @@ end
 
 # delete '/sessions/:id' do
 delete '/sessions' do
-  # session[:id] = nil
+  session[:id] = nil
   logout 
   redirect '/'
 end
